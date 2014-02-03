@@ -3,6 +3,7 @@ xiang-client
 
 xiang-client project
 
+<pre>
 chrome禁止本地浏览时加载本地其他文件，可以采用添加启动参数的方式来支持
 添加参数为 --allow-file-access-from-files  或者　--disable-web-security
 Google Chrome 浏览器默认安装路径是 %USERPROFILE%\AppData\Local\Google\Chrome，其中User Data文件夹存放cache、cookie、历史记录等。
@@ -29,3 +30,4 @@ Google Chrome 浏览器默认安装路径是 %USERPROFILE%\AppData\Local\Google\
 –enable-sync                       启用书签同步
 将参数加在Chrome快捷方式的后面，加一个空格。像这样：C:\Users\zh\AppData\Local\Google\Chrome\Application\chrome.exe –user-data-dir=”D:\Chrome”
 只有在加参数的快捷方式上启动Chrome，参数才起作用，外部调用chrome参数不起作用。
+</pre>
