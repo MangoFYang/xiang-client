@@ -1,0 +1,45 @@
+[ {
+	"value" : "myTest",
+	"label" : "MyTest",
+	"expanded" : false,
+	"children" : [ {
+		"value" : "id1",
+		"label" : "Child 1",
+		"leaf" : true,
+		"viewName" : "demo.Demo"
+	}, {
+		"value" : "id2",
+		"label" : "Child 2",
+		"expanded" : true,
+		"children" : [ {
+			"value" : "id3",
+			"label" : "GrandChild",
+			"leaf" : true
+		} ]
+	} ]
+}, {
+	"value" : "demo",
+	"label" : "demo",
+	"expanded" : true,
+	"children" : [ {
+		"value" : "abc",
+		"label" : "abc",
+		"expanded" : true,
+		"children" : [ {
+			"value" : "foo",
+			"label" : "Foo",
+			"leaf" : true,
+			"viewName" : "demo.abc.Foo"
+		} ]
+	} ]
+}, {
+	"value" : "dev",
+	"label" : "dev",
+	"expanded" : true,
+	"children" : [ {
+		"value" : "TableTool",
+		"label" : "Table Tool",
+		"leaf" : true,
+		"viewName" : "dev.TableTool"
+	} ]
+} ]
