@@ -10,9 +10,14 @@ Ext.define('Xiang.view.demo.abc.FooView', {
     	    title: 'Foo',
     	    store: 'demo.abc.FooStore',
     	    columns: [
-    	        { text: 'Name',  dataIndex: 'name' },
-    	        { text: 'Email', dataIndex: 'email', flex: 1 },
-    	        { text: 'Phone', dataIndex: 'phone' }
+    	        { text: 'Id',  dataIndex: 'id' },
+    	        { text: 'IntField', dataIndex: 'intField' },
+    	        { text: 'DoubleField', dataIndex: 'doubleField' },
+    	        { text: 'IntegerField', dataIndex: 'integerField' },
+    	        { text: 'DoubleBoxField', dataIndex: 'doubleBoxField' },
+    	        { text: 'StringField', dataIndex: 'stringField' },
+    	        { text: 'DateField', dataIndex: 'dateField', xtype:'datecolumn', format:'Y-m-d' },
+    	        { text: 'BigDecimalField', dataIndex: 'bigDecimalField' }
     	    ],
     	    width: '100%',
 			forceFit: true,
