@@ -1,29 +1,15 @@
 Ext.define('Xiang.store.demo.abc.FooStore', {
-	extend : 'Ext.data.Store',
-	storeId : 'demo.abc.FooStore',
+	extend : 'Xiang.store.GridStore',
+	model: 'Xiang.model.demo.abc.Foo',
+			
+	constructor : function(config) {
+		config = Ext.Object.merge({
+			proxy : {
+				url : Xiang.api('demo.abc.Foo', 'list').url,
+			}
+		}, config);
 
-	fields : [ 'id', 'intField', 'doubleField', 'integerField',
-			'doubleBoxField', 'stringField', 'bigDecimalField', {
-				name : 'dateField',
-				type : 'date',
-				dateFormat : 'time'
-			} ],
-
-	autoLoad : true,
-	pageSize : 2,
-	proxy : {
-		type : 'ajax',
-		url : Xiang.api('demo.abc.Foo', 'list').url,
-		pageParam : 'page.page',
-		limitParam : 'page.size',
-		startParam : undefined,
-		noCache : false,
-		reader : {
-			type : 'json',
-			root : 'content',
-			idProperty : 'id',
-			totalProperty : 'totalElements',
-		}
+		this.callParent([ config ]);
 	}
 
 });

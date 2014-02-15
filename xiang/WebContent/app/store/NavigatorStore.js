@@ -1,6 +1,5 @@
 Ext.define('Xiang.store.NavigatorStore', {
 	extend : 'Ext.data.TreeStore',
-	storeId: 'NavigatorStore',
 	model : 'Xiang.model.Navigator',
 
 	autoLoad : true,
