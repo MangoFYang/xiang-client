@@ -4,7 +4,7 @@ Ext.define('Xiang.store.GridStore', {
 	constructor : function(config) {
 		config = Ext.Object.merge({
 			autoLoad : true,
-			pageSize : 20,
+			pageSize : 10,
 			proxy : {
 				type : 'ajax',
 				url : undefined,
