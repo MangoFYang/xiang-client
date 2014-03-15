@@ -1,13 +1,20 @@
 Ext.define('Xiang.view.demo.abc.FooView', {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.demo_abc_Foo',
+    
+    alias: 'widget.FooView',
+    
+    requires:[
+	    'Xiang.view.demo.abc.FooView_maint'
+	],
+    
     layout: 'vbox',
     
     bodyCls: 'x-border-layout-ct',
     
+    FooView_maint: null,
+    
     initComponent: function() {
-    	
-    	var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+    	var me = this;
     	
     	this.items = [ {
     		itemId: 'FooGrid',
@@ -33,140 +40,33 @@ Ext.define('Xiang.view.demo.abc.FooView', {
                 store: 'demo.abc.FooStore',
                 displayInfo: true
             }
-    	}, {
-    		xtype: 'splitter'
-    	}, {
-    		itemId: 'FooForm',
-    		flex: 2,
-            xtype: 'form',
-            bodyPadding: 5,
-            width: '100%',
-            fieldDefaults: {
-                labelAlign: 'top',
-                msgTarget: 'side'
-            },
-            defaults: {
-                anchor: '100%'
-            },
-
+    	} ];
+    	
+    	this.dockedItems = [{
+            xtype: 'toolbar',
+            dock: 'top',
             items: [{
-                xtype: 'container',
-                layout:'hbox',
-                items:[{
-                    xtype: 'container',
-                    flex: 1,
-                    border:false,
-                    layout: 'anchor',
-                    defaultType: 'textfield',
-                    items: [{
-                        fieldLabel: 'First Name',
-                        afterLabelTextTpl: required,
-                        allowBlank: false,
-                        name: 'first',
-                        anchor:'95%'
-                    }, {
-                        fieldLabel: 'Company',
-                        name: 'company',
-                        anchor:'95%'
-                    }]
-                },{
-                    xtype: 'container',
-                    flex: 1,
-                    layout: 'anchor',
-                    defaultType: 'textfield',
-                    items: [{
-                        fieldLabel: 'Last Name',
-                        afterLabelTextTpl: required,
-                        allowBlank: false,
-                        name: 'last',
-                        anchor:'95%'
-                    },{
-                        fieldLabel: 'Email',
-                        afterLabelTextTpl: required,
-                        allowBlank: false,
-                        name: 'email',
-                        vtype:'email',
-                        anchor:'95%'
-                    }]
-                }]
-            },{
-                xtype:'tabpanel',
-                plain:true,
-                activeTab: 0,
-                defaults:{
-                    bodyPadding: 10
-                },
-                items:[{
-                    title:'Personal Details',
-                    defaults: {
-                        width: 230
-                    },
-                    defaultType: 'textfield',
-
-                    items: [{
-                        fieldLabel: 'First Name',
-                        name: 'first',
-                        value: 'Jamie'
-                    },{
-                        fieldLabel: 'Last Name',
-                        name: 'last',
-                        value: 'Avins'
-                    },{
-                        fieldLabel: 'Company',
-                        name: 'company',
-                        value: 'Ext JS'
-                    }, {
-                        fieldLabel: 'Email',
-                        name: 'email',
-                        vtype:'email'
-                    }]
-                },{
-                    title:'Phone Numbers',
-                    defaults: {
-                        width: 230
-                    },
-                    defaultType: 'textfield',
-
-                    items: [{
-                        fieldLabel: 'Home',
-                        name: 'home',
-                        value: '(888) 555-1212'
-                    },{
-                        fieldLabel: 'Business',
-                        name: 'business'
-                    },{
-                        fieldLabel: 'Mobile',
-                        name: 'mobile'
-                    },{
-                        fieldLabel: 'Fax',
-                        name: 'fax'
-                    }]
-                },{
-                    cls: 'x-plain',
-                    title: 'Biography',
-                    layout: 'fit',
-                    items: {
-                        xtype: 'htmleditor',
-                        name: 'bio2',
-                        fieldLabel: 'Biography'
-                    }
-                }]
-            }],
-
-            buttons: [{
-                text: 'Save',
+                text: 'show',
                 handler: function() {
-                    this.up('form').getForm().isValid();
+                	if(!me.FooView_maint) {
+                		me.FooView_maint = Ext.widget('FooView_maint', {
+                			renderTo: me.getEl()
+                		});
+                	}
+                	me.FooView_maint.s();
                 }
-            },{
-                text: 'Cancel',
+            }, {
+                text: 'hide',
                 handler: function() {
-                    this.up('form').getForm().reset();
+                	if(me.FooView_maint) {
+                		me.FooView_maint.h();
+                	}
                 }
             }]
-        } ];
-    	
+        }];
+
         this.callParent(arguments);
+    	
     }
     	
 });
