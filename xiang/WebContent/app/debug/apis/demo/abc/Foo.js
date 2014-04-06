@@ -3,7 +3,7 @@ Ext.define('Xiang.debug.apis.demo.abc.Foo', {
 
 	list : {
 		url : 'dummy/demo/abc/foo.json'
-		// ,debug : true
+		,debug : true
 	}
 
 });

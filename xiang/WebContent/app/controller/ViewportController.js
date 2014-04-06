@@ -23,18 +23,18 @@ Ext.define('Xiang.controller.ViewportController', {
 
 	addTab : function(self, record, index, eOpts) {
 		if (record.data.leaf) {
-			var viewer = this.getViewer();
-			var tab = viewer.getComponent(record.data.text);
+			var viewer = this.getViewer(), 
+				viewName = record.data.viewName;
+			var tab = viewer.getComponent(viewName);
 			if (!tab) {
-				var viewName = record.data.viewName;
 				if( viewName && viewName != '' ) {
-					this.addController( record.data.viewName + 'Controller');
+					this.addController( viewName + 'Controller');
 				}
-				var viewName = "Xiang.view."
-					+ (record.data.viewName || "Default") + 'View';
-				tab = Ext.create(viewName, {
+				var viewFullName = "Xiang.view." + (viewName || "Default") + 'View';
+				tab = Ext.create(viewFullName, {
 					title : record.data.text,
-					itemId : record.data.text,
+					id : viewName,
+					itemId : viewName,
 					closable : true
 				});
 				viewer.add(tab);

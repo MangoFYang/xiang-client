@@ -3,11 +3,7 @@ Ext.define('Xiang.view.demo.abc.FooView', {
     
     alias: 'widget.FooView',
     
-    requires:[
-	    'Xiang.view.demo.abc.FooView_maint'
-	],
-    
-    layout: 'vbox',
+    layout: 'fit',
     
     bodyCls: 'x-border-layout-ct',
     
@@ -18,8 +14,9 @@ Ext.define('Xiang.view.demo.abc.FooView', {
     	
     	this.items = [ {
     		itemId: 'FooGrid',
-    		flex: 1,
+    		
     		xtype: 'gridpanel',
+    		border: 0,
     	    title: 'Foo',
     	    store: 'demo.abc.FooStore',
     	    columns: [
@@ -35,38 +32,84 @@ Ext.define('Xiang.view.demo.abc.FooView', {
     	    width: '100%',
 			forceFit: true,
 			header: false,
-			bbar: {
+			dockedItems: [{
+				dock: 'bottom',
+				border: 0,
+				
                 xtype: 'pagingtoolbar',
                 store: 'demo.abc.FooStore',
-                displayInfo: true
-            }
-    	} ];
-    	
-    	this.dockedItems = [{
-            xtype: 'toolbar',
-            dock: 'top',
-            items: [{
-                text: 'show',
-                handler: function() {
-                	if(!me.FooView_maint) {
-                		me.FooView_maint = Ext.widget('FooView_maint', {
-                			renderTo: me.getEl()
-                		});
-                	}
-                	me.FooView_maint.s();
-                }
-            }, {
-                text: 'hide',
-                handler: function() {
-                	if(me.FooView_maint) {
-                		me.FooView_maint.h();
+                displayInfo: true,
+                listeners: {
+                	beforerender: function( pagingtoolbar, eOpts ) {
+                		pagingtoolbar.insert( 0, me._createManageButton());
                 	}
                 }
             }]
+    	} ];
+    	
+    	this.dockedItems = [{
+    		dock: 'top',
+    		
+            xtype: 'toolbar',
+            items: [me._createManageButton()]
         }];
 
         this.callParent(arguments);
     	
+    },
+    
+    _createManageButton: function() {
+    	var me = this;
+    	return {
+        	xtype: 'splitbutton',
+            text: '管理',
+            menu: {
+            	items: [{
+            		text: '查询',
+            		handler: me.searchFoo
+                }, {
+                	text: '详细信息',
+                	handler: me.detailFoo
+                }, {
+                	text: '添加',
+                	handler: me.addFoo
+                }, {
+                	text: '修改',
+                	handler: me.amendFoo
+                }, {
+                	text: '删除',
+                	handler: me.delFoo
+                }],
+            },
+            handler: function() {
+            	if(!me.FooView_maint) {
+            		me.FooView_maint = Ext.widget('FooView_maint', {
+            			renderTo: me.getEl()
+            		});
+            	}
+            	me.FooView_maint.s();
+            }
+        };
+    },
+    
+    searchFoo: function() {
+    	console.log("searchFoo");
+    },
+    
+    detailFoo: function() {
+    	console.log("detailFoo");
+    },
+    
+    addFoo: function() {
+    	console.log("addFoo");
+    },
+    
+    amendFoo: function() {
+    	console.log("amendFoo");
+    },
+    
+    delFoo: function() {
+    	console.log("delFoo");
     }
     	
 });

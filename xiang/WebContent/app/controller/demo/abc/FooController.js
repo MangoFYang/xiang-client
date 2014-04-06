@@ -3,7 +3,7 @@ Ext.define('Xiang.controller.demo.abc.FooController', {
     	
 	stores : [ 'demo.abc.FooStore' ],
 
-	views : [ 'demo.abc.FooView' ],
+	views : [ 'demo.abc.FooView', 'demo.abc.FooView_maint' ],
 	
 	init : function() {
 		this.control({

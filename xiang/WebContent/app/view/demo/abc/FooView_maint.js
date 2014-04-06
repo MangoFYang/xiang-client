@@ -3,146 +3,111 @@ Ext.define('Xiang.view.demo.abc.FooView_maint', {
     
     alias: 'widget.FooView_maint',
     
+    layout: 'accordion',
+    defaults: {
+        bodyPadding: 10
+    },
+    
     initComponent: function(config) {
     	var me = this,
     		required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
     	
     	Ext.apply(me, config, {
-        	title: 'FieldContainers11',
-            width: 800,
-            items: [{
-        		itemId: 'FooForm',
-        		flex: 2,
-                xtype: 'form',
-                bodyPadding: 5,
-                width: '100%',
-                fieldDefaults: {
-                    labelAlign: 'top',
-                    msgTarget: 'side'
-                },
-                defaults: {
-                    anchor: '100%'
-                },
-
-                items: [{
-                    xtype: 'container',
-                    layout:'hbox',
-                    items:[{
-                        xtype: 'container',
-                        flex: 1,
-                        border:false,
-                        layout: 'anchor',
-                        defaultType: 'textfield',
-                        items: [{
-                            fieldLabel: 'First Name',
-                            afterLabelTextTpl: required,
-                            allowBlank: false,
-                            name: 'first',
-                            anchor:'95%'
-                        }, {
-                            fieldLabel: 'Company',
-                            name: 'company',
-                            anchor:'95%'
-                        }]
-                    },{
-                        xtype: 'container',
-                        flex: 1,
-                        layout: 'anchor',
-                        defaultType: 'textfield',
-                        items: [{
-                            fieldLabel: 'Last Name',
-                            afterLabelTextTpl: required,
-                            allowBlank: false,
-                            name: 'last',
-                            anchor:'95%'
-                        },{
-                            fieldLabel: 'Email',
-                            afterLabelTextTpl: required,
-                            allowBlank: false,
-                            name: 'email',
-                            vtype:'email',
-                            anchor:'95%'
-                        }]
-                    }]
-                },{
-                    xtype:'tabpanel',
-                    plain:true,
-                    activeTab: 0,
-                    defaults:{
-                        bodyPadding: 10
-                    },
-                    items:[{
-                        title:'Personal Details',
-                        defaults: {
-                            width: 230
-                        },
-                        defaultType: 'textfield',
-
-                        items: [{
-                            fieldLabel: 'First Name',
-                            name: 'first',
-                            value: 'Jamie'
-                        },{
-                            fieldLabel: 'Last Name',
-                            name: 'last',
-                            value: 'Avins'
-                        },{
-                            fieldLabel: 'Company',
-                            name: 'company',
-                            value: 'Ext JS'
-                        }, {
-                            fieldLabel: 'Email',
-                            name: 'email',
-                            vtype:'email'
-                        }]
-                    },{
-                        title:'Phone Numbers',
-                        defaults: {
-                            width: 230
-                        },
-                        defaultType: 'textfield',
-
-                        items: [{
-                            fieldLabel: 'Home',
-                            name: 'home',
-                            value: '(888) 555-1212'
-                        },{
-                            fieldLabel: 'Business',
-                            name: 'business'
-                        },{
-                            fieldLabel: 'Mobile',
-                            name: 'mobile'
-                        },{
-                            fieldLabel: 'Fax',
-                            name: 'fax'
-                        }]
-                    },{
-                        cls: 'x-plain',
-                        title: 'Biography',
-                        layout: 'fit',
-                        items: {
-                            xtype: 'htmleditor',
-                            name: 'bio2',
-                            fieldLabel: 'Biography'
-                        }
-                    }]
-                }],
-
-                buttons: [{
-                    text: 'Save',
-                    handler: function() {
-                        this.up('form').getForm().isValid();
-                    }
-                }, {
-                    text: 'Cancel',
-                    handler: function() {
-                        this.up('form').getForm().reset();
-                    }
-                }]
+        	title: 'Foo',
+            width: 390,
+            items: [, {
+            	title: '查询',
+            	
+            	itemId: 'FooForm_search'
+            }, {
+            	title: '详细信息',
+            	
+            	itemId: 'FooForm_detail'
+            }, me._initFooForm_add( required ), {
+            	title: '修改',
+            	
+            	itemId: 'FooForm_amend'
             }]
         });
     	
     	this.callParent(arguments);
+    },
+    
+    _initFooForm_add: function( required ) {
+    	var me = this;
+    	return {
+        	title: '添加',
+    		
+    		itemId: 'FooForm_add',
+    		xtype: 'form',
+    		body: false,
+    		width: '100%',
+    		// Fields will be arranged vertically, stretched to full width
+    	    layout: 'anchor',
+    	    defaultType: 'textfield',
+    	    defaults: {
+    	        anchor: '100%'
+    	    },
+    	    fieldDefaults: {
+    	        labelAlign: 'left',
+    	        labelWidth: 150
+    	    },
+    		
+            items: [{
+                fieldLabel: 'Int Field',
+                name: 'intField',
+                afterLabelTextTpl: required,
+                allowBlank: false
+            }, {
+                fieldLabel: 'Double Field',
+                name: 'doubleField',
+                afterLabelTextTpl: required,
+                allowBlank: false
+            }, {
+                fieldLabel: 'Integer Field',
+                name: 'integerField'
+            }, {
+                fieldLabel: 'Double Box Field',
+                name: 'doubleBoxField',
+                afterLabelTextTpl: required,
+                allowBlank: false,
+                vtype:'email'
+            }, {
+                fieldLabel: 'String Field',
+                name: 'stringField',
+                afterLabelTextTpl: required,
+                allowBlank: false
+            }, {
+                fieldLabel: 'Big Decimal Field',
+                name: 'bigDecimalField',
+                afterLabelTextTpl: required,
+                allowBlank: false
+            }, {
+            	xtype: 'datefield',
+                fieldLabel: 'Date Field',
+                name: 'dateField',
+                afterLabelTextTpl: required,
+                allowBlank: false
+            } ],
+            dockedItems: [{
+                xtype: 'toolbar',
+                dock: 'bottom',
+                layout: { pack: 'center' },
+                border: 0,
+                items: [{
+                    text: '保存',
+                    handler: function() {
+                        me.getComponent('FooForm_add').getForm().isValid();
+                        // Ext.getStore('demo.abc.FooStore').loadPage( 4, {addRecords: true, params: {"aaa": "aaa1", "bbb": "你好"}} )
+                    }
+                }, {
+                    text: '重置',
+                    handler: function() {
+                        me.getComponent('FooForm_add') .getForm().reset();
+                    }
+                }]
+            }]
+        };
     }
     
 });

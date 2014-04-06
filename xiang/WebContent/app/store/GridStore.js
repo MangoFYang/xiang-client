@@ -8,17 +8,40 @@ Ext.define('Xiang.store.GridStore', {
 			proxy : {
 				type : 'ajax',
 				url : undefined,
-				pageParam : 'page.page',
-				limitParam : 'page.size',
+				pageParam : 'core.page',
+				limitParam : 'core.size',
 				startParam : undefined,
+				sortParam : 'core.sorters',
+				filterParam : 'core.filters',
 				noCache : false,
 				reader : {
 					type : 'json',
 					root : 'content',
 					idProperty : 'id',
-					totalProperty : 'totalElements',
+					totalProperty : 'totalElements'
 				}
-			}
+//				,encodeSorters : function(sorters) {
+//					var sortStrs = [];
+//					for (var i = 0; i < sorters.length; i++) {
+//						var sorter = sorters[i];
+//						sortStrs[i] = sorter.property + '#' + sorter.direction;
+//					}
+//					return sortStrs.join(",");
+//				},
+//				encodeFilters : function(filters) {
+//					var filterStrs = [];
+//					for (var i = 0; i < filters.length; i++) {
+//						var filter = filters[i];
+//						filterStrs[i] = filter.property + '#' + filter.value;
+//					}
+//					return filterStrs.join(",");
+//				}
+			},
+			
+			remoteSort : true,
+			defaultSortDirection : 'ASC',
+			remoteFilter : true
+			
 		}, config);
 
 		this.callParent([ config ]);

@@ -52,7 +52,7 @@ Ext.onReady(function() {
             decimalSeparator: '.',
             currencySign: '\u00a5',
             // Chinese Yuan
-            dateFormat: 'y年m月d日'
+            dateFormat: 'Y-m-d'
         });
     }
 });
@@ -97,7 +97,7 @@ Ext.define("Ext.locale.zh_CN.picker.Date", {
     monthYearText: '选择一个月 (Control+Up/Down 来改变年份)',
     //update
     todayTip: "{0} (空格键选择)",
-    format: "y年m月d日",
+    format: "Y-m-d",
     ariaTitle: '{0}',
     ariaTitleDateFormat: 'Y\u5e74m\u6708d\u65e5',
     longDayFormat: 'Y\u5e74m\u6708d\u65e5',
@@ -154,7 +154,7 @@ Ext.define("Ext.locale.zh_CN.form.field.Date", {
     minText: "该输入项的日期必须在 {0} 之后",
     maxText: "该输入项的日期必须在 {0} 之前",
     invalidText: "{0} 是无效的日期 - 必须符合格式： {1}",
-    format: "y年m月d日"
+    format: "Y-m-d"
 });
 
 Ext.define("Ext.locale.zh_CN.form.field.ComboBox", {

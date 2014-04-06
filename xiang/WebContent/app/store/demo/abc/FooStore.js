@@ -6,7 +6,23 @@ Ext.define('Xiang.store.demo.abc.FooStore', {
 		config = Ext.Object.merge({
 			proxy : {
 				url : Xiang.api('demo.abc.Foo', 'list').url,
-			}
+			},
+			sorters : [ {
+				property : 'intField'
+			}, {
+				property : 'doubleField',
+				direction : 'DESC'
+			} ],
+			filters : [ {
+				property : 'intField',
+				value : 32
+			}, {
+				property : 'stringField',
+				value : '中文'
+			}, {
+				property : 'stringField',
+				value : 'aa'
+			} ]
 		}, config);
 
 		this.callParent([ config ]);
