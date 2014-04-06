@@ -11,7 +11,14 @@ Ext.define('Xiang.view.widget.DockedPanel', {
     	Ext.apply(me, config, {
     		floating: true,
         	height: '100%',
-        	shadow: false
+        	shadow: false,
+        	tools: [{
+        	    type:'right',
+        	    tooltip: '隐藏',
+        	    handler: function(event, toolEl, panelHeader) {
+        	    	me.h();
+        	    }
+        	}]
     	});
     	
     	this.callParent(arguments);
@@ -36,7 +43,7 @@ Ext.define('Xiang.view.widget.DockedPanel', {
     		me.isInited = true;
     	} 
     	if(me.canSlideIn) {
-    		me.getEl().slideIn('r', { duration: 800 });
+    		me.getEl().slideIn('r', { duration: 600 });
     		me.canSlideIn = false;
     	}
     },
@@ -44,9 +51,13 @@ Ext.define('Xiang.view.widget.DockedPanel', {
     h: function() {
     	var me = this;
     	if(!me.canSlideIn) {
-    		me.getEl().slideOut('r', { duration: 800 });
+    		me.getEl().slideOut('r', { duration: 600 });
     		me.canSlideIn = true;
     	}
+    },
+    
+    isS: function() {
+    	return this.canSlideIn;
     }
     
 });
