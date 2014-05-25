@@ -18,10 +18,16 @@ Ext.define('Xiang.store.demo.abc.FooStore', {
 				value : 32
 			}, {
 				property : 'stringField',
-				value : '中文'
+				value : '1'
 			}, {
 				property : 'stringField',
 				value : 'aa'
+			}, {
+				property : 'fromDate',
+				value : '2014-01-01'
+			}, {
+				property : 'toDate',
+				value : '2014-01-03'
 			} ]
 		}, config);
 

@@ -48,14 +48,87 @@ Ext.define('Xiang.view.demo.abc.FooView', {
     	} ];
     	
     	this.dockedItems = [{
+    		itemId : 'TopDock',
     		dock: 'top',
     		
             xtype: 'toolbar',
-            items: [me._createManageButton()]
+            items: [me._createManageButton(), {
+            	itemId : 'SearchForm',
+            	xtype: 'form',
+            	layout: 'hbox',
+            	border: 0,
+            	defaults: { 
+            		// defaults are applied to items, not the container
+            		margin : '0 0 0 10'
+            	},
+            	items: [ {
+                	xtype: 'textfield',
+                    fieldLabel: 'String Field',
+                    labelWidth: 80,
+                    width: 200,
+                    name: 'stringField'
+                }, {
+                	xtype: 'datefield',
+                    fieldLabel: 'Form Date',
+                    labelWidth: 80,
+                    width: 200,
+                    name: 'fromDate'
+                }, {
+                	xtype: 'datefield',
+                    fieldLabel: 'To Date',
+                    labelWidth: 80,
+                    width: 200,
+                    name: 'toDate'
+                } ]
+            }, {
+            	xtype: 'button',
+            	text: '查询',
+            	action: 'searchForm_search',
+                handler: function() {
+                	var store = me.getComponent('FooGrid').getStore(),
+                		ownerCt = this.ownerCt, 
+                		filters = [];
+                	
+                	var stringField = ownerCt.down('[name=stringField]').getRawValue().trim();
+                	if( stringField !== '' ) {
+                		filters.push({
+            				property : 'stringField',
+            				value : stringField
+            			});
+                	}
+                	var fromDate = ownerCt.down('[name=fromDate]').getRawValue().trim();
+                	if( fromDate !== '' ) {
+                		filters.push({
+            				property : 'fromDate',
+            				value : fromDate
+            			});
+                	}
+                	var toDate = ownerCt.down('[name=toDate]').getRawValue().trim();
+                	if( toDate !== '' ) {
+                		filters.push({
+            				property : 'toDate',
+            				value : toDate
+            			});
+                	}
+                	if(filters && filters.length) {
+                		store.clearFilter(true);
+                		store.addFilter(filters);
+                	} else {
+                		store.clearFilter();
+                	}
+                }
+            },{
+            	xtype: 'button',
+            	text: '重置',
+            	action: 'searchForm_reset',
+            	handler: function() {
+            		var searchForm = me.getDockedComponent('TopDock').getComponent('SearchForm');
+            		searchForm.getForm().reset();
+                }
+            }]
         }];
 
         this.callParent(arguments);
-    	
     },
     
     _createManageButton: function() {

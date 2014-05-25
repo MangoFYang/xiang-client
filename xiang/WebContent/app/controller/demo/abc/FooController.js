@@ -7,14 +7,21 @@ Ext.define('Xiang.controller.demo.abc.FooController', {
 	
 	init : function() {
 		this.control({
-            'demo_abc_Foo #FooGrid': {
+            'FooView #FooGrid': {
             	itemclick: this.itemclick
+            },
+            'FooView button[action=searchForm_search]': {
+            	click: this.buttonClick
             }
         });
 	},
 	
 	itemclick: function( self, record, item, index, e, eOpts ) {
-		var t;
+		console.info("FooView #FooGrid -> itemclick");
+	}, 
+	
+	buttonClick: function(  ) {
+		console.info("FooView button[action=searchForm_search] -> click");
 	}
     	
 });
