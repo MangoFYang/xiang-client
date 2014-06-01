@@ -15,30 +15,30 @@ Ext.define('Xiang.view.demo.abc.FooView_maint', {
     	Ext.apply(me, config, {
         	title: 'Foo',
             width: 390,
-            items: [, {
+            items: [ {
             	title: '查询',
             	
-            	itemId: 'FooForm_search'
+            	itemId: 'searchForm'
             }, {
             	title: '详细信息',
             	
-            	itemId: 'FooForm_detail'
-            }, me._initFooForm_add( required ), {
+            	itemId: 'detailForm'
+            }, me._initAddForm( required ), {
             	title: '修改',
             	
-            	itemId: 'FooForm_amend'
-            }]
+            	itemId: 'amendForm'
+            } ]
         });
     	
     	this.callParent(arguments);
     },
     
-    _initFooForm_add: function( required ) {
-    	var me = this;
+    _initAddForm: function( required ) {
+    	// var me = this;
     	return {
         	title: '添加',
     		
-    		itemId: 'FooForm_add',
+    		itemId: 'addForm',
     		xtype: 'form',
     		body: false,
     		width: '100%',
@@ -53,7 +53,7 @@ Ext.define('Xiang.view.demo.abc.FooView_maint', {
     	        labelWidth: 150
     	    },
     		
-            items: [{
+            items: [ {
                 fieldLabel: 'Int Field',
                 name: 'intField',
                 afterLabelTextTpl: required,
@@ -96,15 +96,10 @@ Ext.define('Xiang.view.demo.abc.FooView_maint', {
                 border: 0,
                 items: [{
                     text: '保存',
-                    handler: function() {
-                        me.getComponent('FooForm_add').getForm().isValid();
-                        // Ext.getStore('demo.abc.FooStore').loadPage( 4, {addRecords: true, params: {"aaa": "aaa1", "bbb": "你好"}} )
-                    }
+                    action: 'addForm_save'
                 }, {
                     text: '重置',
-                    handler: function() {
-                        me.getComponent('FooForm_add') .getForm().reset();
-                    }
+                    action: 'addForm_reset'
                 }]
             }]
         };
